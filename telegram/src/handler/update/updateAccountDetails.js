@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const URL = process.env.WEBHOOK_ENDPOINT_URL | "http://localhost:3001";
+const URL = process.env.WEBHOOK_ENDPOINT_URL;
 const updateAccountDetails = async (account) => {
   // send to webhook endpoint get account details
   console.log(account, "this is account");

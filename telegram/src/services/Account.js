@@ -3,8 +3,8 @@ const axios = require("axios");
 
 const version = process.env.VERSION;
 
-const MONGO_URL = process.env.MONGO_ENDPOINT_URL | "http://localhost:3000";
-const WEBHOOK_URL = process.env.WEBHOOK_ENDPOINT_URL | "http://localhost:3001";
+const MONGO_URL = process.env.MONGO_ENDPOINT_URL;
+const WEBHOOK_URL = process.env.WEBHOOK_ENDPOINT_URL;
 
 /**
  * The function `getAccounts` is an asynchronous function that retrieves account data from a MongoDB
@@ -47,7 +47,6 @@ const createAccounts = async (account_key, auth, account_name) => {
   } catch (error) {
     console.log(error);
   }
-
 };
 
 /**

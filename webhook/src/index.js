@@ -10,7 +10,7 @@ const account = require("./routes/account.js");
 const { IntervalSave } = require("./modules/IntervalSave.js");
 require("dotenv").config();
 const app = express();
-const PORT = process.env.WEBHOOK_PORT || 3001; // change this to your desired port number
+const PORT = process.env.WEBHOOK_PORT; // change this to your desired port number
 
 // parse application/json requests
 app.use(bodyParser.urlencoded({ extended: true }));

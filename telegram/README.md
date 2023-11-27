@@ -61,8 +61,29 @@ WEBHOOK_ENDPOINT_URL = "http://webhook:3001"
    ```
    TELE_KEY`: Telegram API token generated from BotFather used for bot authentication.
    VERSION = "v1"
-   MONGO_ENDPOINT_URL = "http://localhost:<your-port-number>"
-   WEBHOOK_ENDPOINT_URL = "http://localhost:<your-port-number>"
+   MONGO_ENDPOINT_URL = "http://localhost:<your-port-number>" (default: 3000)
+   WEBHOOK_ENDPOINT_URL = "http://localhost:<your-port-number>" (default: 3001)
    ```
 
 4. Run the bot using `npm start`.
+
+# Demo
+
+## Starting the bot
+
+1. type /start to start the bot
+   ![telegramstart](/telegram/src/assets/telegram_start.png?raw=true)
+
+2. follow the instructions to create an account, ensure the
+
+## Account Creation
+
+![telegramcreate](/telegram/src/assets/telegram_create.png?raw=true)
+
+## Account Summary
+
+![telegramsummary](/telegram/src/assets/telegram_summary.png?raw=true)
+
+## Account History
+
+![telegramhistory](/telegram/src/assets/telegram_history.png?raw=true)

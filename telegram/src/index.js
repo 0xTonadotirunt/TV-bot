@@ -101,6 +101,7 @@ bot.on("message", async (msg) => {
       const access = await checkLoggedin(chatId, msg.from.username);
       if (access.authenticated) {
         bot.sendMessage(chatId, `Welcome ${msg.from.username}`);
+        setState(chatId, "authenticated");
         return;
       }
 
@@ -241,7 +242,6 @@ bot.on("callback_query", async (query) => {
     return;
   }
 
-
   /* This code block is checking if the current state of the user is "confirm_auth". If it is, it
   checks if the callback query data is "cancel". If it is, it sends a message to create the
   authentication key again by calling the `sendCreateAuthKeyMessage` function and returns. */
@@ -257,7 +257,7 @@ bot.on("callback_query", async (query) => {
     return;
   }
 
-/* This code block is handling the callback query when the user is in the state of
+  /* This code block is handling the callback query when the user is in the state of
 "confirm_name_account". */
   if (state === "confirm_name_account") {
     const account = getState(chatId, "auth");
@@ -286,7 +286,7 @@ bot.on("callback_query", async (query) => {
     return;
   }
 
-/* This code block is checking if the current state of the user is not in the list of create states. If
+  /* This code block is checking if the current state of the user is not in the list of create states. If
 it is not in the create states, it means that the user is not in the process of creating an account. */
   if (!createStates.includes(state)) {
     const access = await checkLoggedin(chatId, username);

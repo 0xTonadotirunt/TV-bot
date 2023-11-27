@@ -1,5 +1,5 @@
 const axios = require("axios");
-const MONGO_URI = process.env.MONGO_ENDPOINT_URL | "http://localhost:3000";
+const MONGO_URI = process.env.MONGO_ENDPOINT_URL;
 
 /**
  * The `updatedb` function updates a document in a MongoDB database with the provided payload.

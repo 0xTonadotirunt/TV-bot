@@ -1,8 +1,8 @@
-# Project Readme
+# WebHook API
 
 ## Overview
 
-This project is a Node.js application that sets up a server using the Express framework. It includes three main routers: `webhook.js`, `exists.js`, and `account.js`. The server listens on a specified port (default is 3001) and handles incoming requests related to webhooks, account existence, and account details updates.
+This API is a Node.js application that sets up a server using the Express framework. It includes three main routers: `webhook.js`, `exists.js`, and `account.js`. The server listens on a specified port (default is 3001) and handles incoming requests related to webhooks, account existence, and account details updates.
 
 ## Environment Variables (Docker)
 
@@ -87,8 +87,8 @@ To run the services in isolation,
    ALPACA_SECRET_KEY = <Alpaca Secret Key>
    PAPER = True
    VERSION = "v1"
-   MONGO_ENDPOINT_URL = "http://localhost:<mongo-endpoint-port>"
-   WEBHOOK_ENDPOINT_URL = "http://localhost:<webhook-endpoint-port>"
+   MONGO_ENDPOINT_URL = "http://localhost:<mongo-endpoint-port>" (default: 3000)
+   WEBHOOK_ENDPOINT_URL = "http://localhost:<webhook-endpoint-port>" (default: 3001)
    WEBHOOK_PORT = <webhook-endpoint-port>
    ```
 
