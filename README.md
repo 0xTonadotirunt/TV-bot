@@ -84,7 +84,8 @@ Create a `.env` file in the root of each folder `/mongo`, `/telegram`, `/webhook
 
 3. Go to the "Settings" tab.
 4. Choose the correct condition as indicated in your tradingView strategy script
-   (In this case, an alertcondition is created within the pinescript for this strategy, startLongTrade corresponds to Open Long
+   (In this case, an alertcondition is created within the pinescript for this strategy, startLongTrade corresponds to Open Long )
+   ![openlongalertexample](/webhook/trading-view-example/openlongalertexample.png?raw=true)
 5. Enter an alert name
 6. Under Message, include the following
 
