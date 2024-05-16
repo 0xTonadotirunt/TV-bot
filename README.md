@@ -16,7 +16,23 @@ Here is a simplified diagram :
 
 # Prerequisites
 
-- ensure Docker is installed on your machine.
+- ensure [Docker](https://www.docker.com/products/docker-desktop/) is installed on your machine.
+
+# Installation
+
+1. Clone the Repository:
+   ```
+   git clone https://github.com/0xTonadotirunt/TV-webhook
+   cd TV-webhook
+   ```
+2. Run Docker
+3. Confirm that Docker daemon engine is running.
+4. Make sure to populate all the environmental variables ( .env ) listed below, and refer to the provided .env.example for reference.
+5. Utilize Docker to run the application:
+   ```
+   docker-compose up --build
+   ```
+   This command will pull necessary images, build the Docker containers, and start the services defined in the `docker-compose.yml` file.
 
 ## Environment Variables (.env)
 
@@ -24,10 +40,12 @@ Create a `.env` file in the root of each folder `/mongo`, `/telegram`, `/webhook
 
 ### `/mongo/.env`
 
+```
 - MONGO_URI: mongodb://mongodb:27017/TVtele
 - API_VERSION: v1
 - MONGO_ENDPOINT_URL: http://mongo:3000
 - MONGO_PORT: 3000
+```
 
 ### `/telegram/.env`
 
@@ -66,9 +84,12 @@ Create a `.env` file in the root of each folder `/mongo`, `/telegram`, `/webhook
 
 3. Go to the "Settings" tab.
 4. Choose the correct condition as indicated in your tradingView strategy script
+   (In this case, an alertcondition is created within the pinescript for this strategy, startLongTrade corresponds to Open Long
 5. Enter an alert name
 6. Under Message, include the following
-   {
+
+```
+{
    "ticker" : "{{ticker}}",
    "openPrice": "{{open}}",
    "closePrice": "{{close}}",
@@ -77,17 +98,33 @@ Create a `.env` file in the root of each folder `/mongo`, `/telegram`, `/webhook
    "action" : "entry",
    "indicatorTime" : "{{time}}",
    "strategyTime" : "{{timenow}}"
-   }
+ }
+```
+
+change the **direction** and **action** to what is required in your strategy.
+
+**possible inputs:**
+
+direction : "buy" OR "sell"
+action : "entry" OR "exit"
 
 (NOTE: ensure your alert corresponds to `direction` and `action`
-if your alert is starting a long trade `startLongTrade`, your `direction` should be "buy", `action` should be "entry"). An example of a Open Long setup is as shown below:
+if your alert is starting a long trade e.g. `startLongTrade`, your `direction` should be "buy", `action` should be "entry").
+
+An example of a Open Long setup is as shown below:
+
 ![tradingviewstartlongtradeexample](/webhook/trading-view-example/tradingviewstartlongtradeexample.png?raw=true)
+Open Long -> direction : buy, action : entry
+![tradingviewalertexample](/webhook/trading-view-example/tradingviewalertexample.png)
+"Open Long" alert is executed when variable startLongTrade is called
 
-7. Create a new alert based on your trading strategy. Set the alert message with the necessary details such as ticker, open/close prices, interval, direction, action, indicator time, and strategy time.
+7. Change Trigger alert based on your trading strategy (e.g. Only Once per Bar only allows one corresponding alert to be triggered per bar) .
 
-8. In the "Webhook URL" field, enter the URL for the corresponding webhook endpoint:
+8. Navigate to the "Notifications" tab. check the checkbox "Webhook URL" In the "Webhook URL" field, enter the URL for the corresponding webhook endpoint:
 
    - default Alpaca Trading Webhook: `http://localhost:3001/v1/webhook`
+   - most likely the application will be deployed, and will require the endpoint to be served from the cloud providers' URL
+     (e.g. application is hosted on ec2 : https://ec2-xxx-xxx-xxx-xxx.compute-1.amazonaws.com/v1/webhook)
 
 ![tradingviewurlexample](/webhook/trading-view-example/ec2urlexample.png?raw=true)
 
@@ -101,20 +138,10 @@ Note: Ensure that your local environment is accessible to external requests if y
 
 1. Create a bot using BotFather (https://telegram.me/BotFather) to get the telegram token, this token is required in the environment variables
 
-# Installation
+## Alpaca Setup
 
-1. Clone the Repository:
-   ```
-   git clone https://github.com/0xTonadotirunt/TV-webhook
-   cd TV-webhook
-   ```
-2. Confirm that Docker daemon engine is running.
-3. Make sure to populate all the environmental variables, and refer to the provided .env.example for reference.
-4. Utilize Docker to run the application:
-   ```
-   docker-compose up --build
-   ```
-   This command will pull necessary images, build the Docker containers, and start the services defined in the `docker-compose.yml` file.
+1. Sign up for an Alpaca account
+2. In the dashboard page, on the right under "API Keys", generate a key, this is your ALPACA_KEY_ID and your ALPACA_SECRET_KEY to be placed into the webhook env file.
 
 # Cautionary Note:
 
